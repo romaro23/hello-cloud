@@ -1,11 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <title>Hello Cloud!</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 {
+            margin-top: 0;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .btn {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 12px 25px;
+            background: #ffffff;
+            color: #2575fc;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #e3e3e3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello from GitHub Pages ☁️</h1>
-    <p>This is a simple test website hosted on GitHub Pages.</p>
+    <div class="card">
+        <h1>Привіт, Roman!</h1>
+        <p>Це тестова сторінка, згенерована спеціально для тебе.</p>
+        <a class="btn" href="#">Натисни мене</a>
+    </div>
 </body>
 </html>
