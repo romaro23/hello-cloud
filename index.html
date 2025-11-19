@@ -1,59 +1,63 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test Page</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 40px 50px;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            max-width: 400px;
-        }
-        h1 {
-            margin-top: 0;
-            font-size: 2.2rem;
-            font-weight: 700;
-        }
-        p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .btn {
-            margin-top: 20px;
-            display: inline-block;
-            padding: 12px 25px;
-            background: #ffffff;
-            color: #2575fc;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        .btn:hover {
-            background: #e3e3e3;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Cloud Hello Portal</title>
+  <style>
+    body{margin:0;font-family:Segoe UI,Tahoma,Arial,sans-serif;background:linear-gradient(135deg,#6a11cb,#2575fc);color:#fff;min-height:100vh;display:grid;place-items:center}
+    .card{background:rgba(255,255,255,.15);backdrop-filter:blur(10px);padding:36px 44px;border-radius:20px;box-shadow:0 8px 25px rgba(0,0,0,.2);max-width:720px}
+    h1{margin:0 0 12px}
+    .row{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px}
+    .btn{display:inline-block;padding:10px 18px;background:#fff;color:#2575fc;text-decoration:none;border-radius:10px;font-weight:600}
+    pre{background:rgba(0,0,0,.25);padding:10px;border-radius:10px;overflow:auto}
+    small{opacity:.85}
+  </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Hello world!</h1>
-        <p>This is GitHub Pages.</p>
-        <a class="btn" href="#">Learn more</a>
+  <div class="card">
+    <h1>👋 Multi-Cloud Hello Portal</h1>
+    <p><small>Azure (frontend) · AWS Lambda (API) · IBM Watson (чат) · Drive (файли) · GitHub (код)</small></p>
+
+    <h3>1) Дані з AWS Lambda</h3>
+    <pre id="lambdaBox">Loading…</pre>
+
+    <div class="row">
+      <a class="btn" id="driveBtn" target="_blank" rel="noopener">Відкрити спільну папку</a>
+      <a class="btn" href="https://github.com/USERNAME/multi-cloud-hello" target="_blank">GitHub репозиторій</a>
     </div>
+  </div>
+
+  <script>
+    const API_URL = 'https://0imfxw4bfh.execute-api.us-east-1.amazonaws.com/prod/hello';
+    fetch(API_URL, { mode: 'cors' })
+      .then(r => r.json())
+      .then(d => {
+        const pretty = JSON.stringify(d, null, 2);
+        document.getElementById('lambdaBox').textContent = pretty;
+      })
+      .catch(e => {
+        document.getElementById('lambdaBox').textContent = 'Fetch error: ' + e;
+      });
+
+    // 👉 ВСТАВ ПОСИЛАННЯ НА СПІЛЬНУ ПАПКУ (Drive/Dropbox/OneDrive)
+    document.getElementById('driveBtn').href = 'https://drive.google.com/drive/folders/XXXXXXXXXXXX?usp=sharing';
+  </script>
+
+  <!-- 👉 СКРИПТ IBM WATSON ASSISTANT (встав свій з IBM Cloud → Web chat) -->
+  <!-- Приклад форми (заміни на свій): 
+  <script>
+    window.watsonAssistantChatOptions = {
+      integrationID: "YOUR_INTEGRATION_ID",
+      region: "eu-gb",
+      serviceInstanceID: "YOUR_SERVICE_INSTANCE_ID",
+      onLoad: async (instance) => { await instance.render(); }
+    };
+    setTimeout(function(){
+      const t = document.createElement('script'); t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/latest/web-chat.min.js";
+      document.head.appendChild(t);
+    });
+  </script>
+  -->
 </body>
 </html>
